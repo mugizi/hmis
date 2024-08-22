@@ -1,0 +1,96 @@
+{% extends 'core/base.html' %}
+{% load static tailwind_tags %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<!-- Custom Styles for Print -->
+<style>
+    @media print {
+        #header {
+            display: none;
+        }
+        .no-print {
+            display: none;
+        }
+        .print-container {
+            width: 210mm; /* A4 width */
+            height: auto; /* Adjust height based on content */
+            margin: 0 auto;
+            padding: 20mm;
+            box-shadow: none;
+            border: none;
+        }
+        .header, .footer {
+            display: none;
+        }
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<script>
+    function printPageArea() {
+        var printContent = document.getElementById('printArea').innerHTML;
+        var originalContent = document.body.innerHTML;
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = originalContent;
+        window.location.reload(); // Optional: Reload the page to restore scripts
+    }
+    window.onload = function() {
+    var mediaQueryList = window.matchMedia('print');
+    mediaQueryList.addListener(function(mql) {
+        if (mql.matches) {
+            // Before print
+            document.title = '';
+            window.location.href = '';
+        }
+    });
+};
+</script>
+
+<!-- Container to Print -->
+<div id="printArea" class="print-container p-6 mx-auto border border-gray-200 rounded-lg shadow-lg">
+    {% for patient in patients_with_services %}
+    <div class="flex items-center mb-4">
+        <div class="w-24 h-24 mr-4">
+            <img src="{% static 'homelogo.png' %}" alt="Logo" class="w-full h-full object-contain">
+        </div>
+        <div>
+            <p class="text-lg font-bold">SALAMA1 POLYCLINIC</p>
+            <p>Nairobi, Kenya</p>
+            <p>Contact: 0397745664</p>
+        </div>
+        <div class="">
+            <p class="text-xl ml-16 italic text-red-700">Receipt Number: 001</p>
+        </div>
+    </div>
+    <hr class="my-2 border-gray-300">
+    
+    <div class="mb-4">
+        <p class="text-sm font-semibold">Patient Name: {{ patient.Firstname }} {{ patient.Othernames }}</p>
+        <p class="text-xs">Age: {{ patient.Age }}</p>
+        <p class="text-xs">Weight: {{ patient.weight }} kg</p>
+        <p class="text-xs">Date: {{ patient.created_at }}</p>
+    </div>
+  
+    <hr class="my-2 border-gray-300">
+    {% for provided_service in patient.providedservices_set.all %}
+    <div class="mb-4">
+        <p class="text-xs font-semibold">{{ forloop.counter }}. Service: {{ provided_service.service.service }}</p>
+        <p class="text-xs font-semibold ml-3">Amount Paid: KSh {{ provided_service.service.price }}</p>
+    </div>
+    {% endfor %}
+    <hr class="my-2 border-gray-300">
+    <div>
+        <p class="text-xs">Wish you quick recovery!</p>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Print Button -->
+<div class="no-print mt-5 ml-3 p-3">
+    <button onclick="printPageArea()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Print Receipt</button>
+</div>
+{% endblock %}

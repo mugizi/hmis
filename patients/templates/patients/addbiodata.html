@@ -1,0 +1,83 @@
+
+
+{% extends 'core/base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<form action="." method="POST">
+    {% csrf_token %}
+    <div class="bg-white shadow-lg rounded-md pb-5 pt-3">
+        
+        <div class="flex justify-between shadow-sm mb-3 p-2">
+            <p class="p-3 text-gray-900 font-bold">Add Patient</p>
+            <a href="{% url 'patients:biodata' %}" class="bg-blue-800 text-white p-3 rounded-md">View Patients</a>
+        </div>
+        <div class="p-3 flex gap-10">
+            <div>
+        <div class="flex mb-2">
+            <label for="password" class="w-40 text-sm font-medium text-gray-900 dark:text-white">Firstname</label>
+            {% render_field form.Firstname class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+        </div>
+        <div class="flex mb-2">
+          <label for="Othernames" class="w-40 text-sm font-medium text-gray-900 dark:text-white">Othernames</label>
+          {% render_field form.Othernames class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+      </div>
+  
+      <div class="flex mb-2">
+        <label for="Age" class="w-40 text-sm font-medium text-gray-900 dark:text-white">Age</label>
+        {% render_field form.Age class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+    </div>
+    <div class="flex mb-2">
+        <label for="weight" class="w-40 text-sm font-medium text-gray-900 dark:text-white">weight</label>
+        {% render_field form.weight class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+    </div>
+    <div class="flex mb-2">
+      <label for="sex" class="w-40 text-sm font-medium text-gray-900 dark:text-white">Sex</label>
+      {% render_field form.sex class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+  </div>
+</div>
+
+
+
+<div>
+  <div class="flex mb-2">
+    <label for="height" class="w-40 text-sm font-medium text-gray-900 dark:text-white">Height</label>
+    {% render_field form.height class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+</div>
+<div class="flex mb-2">
+    <label for="tribe" class="w-40 text-sm font-medium text-gray-900 dark:text-white">tribe</label>
+    {% render_field form.tribe class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+</div>
+<div class="flex mb-2">
+  <label for="Address" class="w-40 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+  {% render_field form.Address  class="shadow-sm bg-gray-50 border h-10 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+</div>
+
+<div class="flex mb-2">
+<label for="Phone" class="w-40 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+{% render_field form.Phone class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+</div>
+<div class="flex mb-2">
+    <label for="Emailaddress" class="w-40 text-sm font-medium text-gray-900 dark:text-white">Emailaddress</label>
+    {% render_field form.Emailaddress class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" %}
+</div>
+</div>
+
+
+</div>
+    
+        <div class="flex">
+            <label for="password" class="w-40 text-sm font-medium text-gray-900 dark:text-white"></label>
+            <button
+            class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-700 dark:bg-teal-600 dark:text-white dark:hover:bg-teal-900"
+            type="submit">Save Details
+          </button>
+
+        
+    </div>
+    </div>
+</form>
+
+{% endblock %}

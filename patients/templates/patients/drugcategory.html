@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#bootstrapdatatable').DataTable({
+            "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+            "iDisplayLength": 10
+        });
+    });
+</script>
+
+<div class="bg-gray-100 pl-3 pr-5 pt-3 pb-3">
+    <div class="flex justify-between items-center mb-3">
+        <p class="text-xl font-semibold">Drug Category</p>
+        <a href="{% url 'patients:adddrugcategory' %}" class="rounded bg-green-600 text-white px-4 py-2 hover:bg-green-700">Add Drug Catagory</a>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <table id="bootstrapdatatable" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">S/No</th>
+                    <th scope="col" class="px-6 py-3">Category</th>
+
+                    <th scope="col" class="px-6 py-3">Added on</th>
+                    <th scope="col" class="px-6 py-3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in categories %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ forloop.counter }}
+                    </th>
+                    <td class="px-6 py-4">{{ i.category }}</td>
+         
+                    <td class="px-6 py-4">{{ i.created_at }}</td>
+                    <td class="px-6 py-4">
+                        <button type="button" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Update</button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="px-6 py-4 text-center">No drugs available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
