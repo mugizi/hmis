@@ -1,8 +1,0 @@
-/* Define custom striping classes */
-.dataTables_wrapper .dataTables_striped tbody tr:nth-child(odd) {
-    background-color: #382009; /* Light cyan */
-}
-
-.dataTables_wrapper .dataTables_striped tbody tr:nth-child(even) {
-    background-color: #9c0d19; /* Light lime */
-}
